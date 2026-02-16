@@ -7,6 +7,7 @@
   switch/LDO is now correctly enabled.
 - Updated nPM130X SoftStart currents.
 - Enabled LDO SoftStart for compatible devices
+- nPM1300 and nPM1304: Updated SoftStart currents.
 
 ## 2.2.3 - 2025-09-30
 
