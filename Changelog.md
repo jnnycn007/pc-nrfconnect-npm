@@ -1,13 +1,15 @@
 ### 2.2.4 - Unreleased
 
+### Changed
+
+- nPM1300 and nPM1304: Updated SoftStart currents.
+- Enabled LDO SoftStart for compatible devices
+
 ### Fixed
 
 - nPM2100: Issue with setting the timer period value from the UI.
 - nPM2100: When the GPIO mode control is selected, the toggle for Load
   switch/LDO is now correctly enabled.
-- Updated nPM130X SoftStart currents.
-- Enabled LDO SoftStart for compatible devices
-- nPM1300 and nPM1304: Updated SoftStart currents.
 
 ## 2.2.3 - 2025-09-30
 
