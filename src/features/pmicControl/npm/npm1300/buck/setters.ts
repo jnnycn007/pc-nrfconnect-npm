@@ -105,7 +105,7 @@ export class BuckSet {
                     message: `Buck 2 powers the I2C communication required by this app. A voltage lower than 1.6 V might cause issues with the app connection.
                         Are you sure you want to continue?`,
                     confirmLabel: 'Yes',
-                    optionalLabel: "Yes, don't ask again",
+                    optionalLabel: "Yes & don't ask again",
                     cancelLabel: 'No',
                     title: 'Warning',
                     onConfirm: () => action().then(resolve).catch(reject),
@@ -193,7 +193,7 @@ export class BuckSet {
                     doNotAskAgainStoreID: 'pmic1300-setBuckVOut-0',
                     message: `Buck 2 powers the I2C communication required by this app. A software voltage might be already set to less then 1.6 V . Are you sure you want to continue?`,
                     confirmLabel: 'Yes',
-                    optionalLabel: "Yes, don't ask again",
+                    optionalLabel: "Yes & don't ask again",
                     cancelLabel: 'No',
                     title: 'Warning',
                     onConfirm: () => action().then(resolve).catch(reject),
@@ -329,7 +329,7 @@ export class BuckSet {
                     message: `Disabling the buck 2 might effect I2C communications to the PMIC chip and hance you might get
                     disconnected from the app. Are you sure you want to continue?`,
                     confirmLabel: 'Yes',
-                    optionalLabel: "Yes, don't ask again",
+                    optionalLabel: "Yes & don't ask again",
                     cancelLabel: 'No',
                     title: 'Warning',
                     onConfirm: () => action().then(resolve).catch(reject),

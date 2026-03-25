@@ -76,13 +76,13 @@ const npm1304EngineeringMessage = (
 
 const npm1304OlderPmicMessage = (
     <p>
-        You have connected an nPM1304-EK v0.9.0 or older, which has limited LDO
-        functionality. Please{' '}
+        You have connected an nPM1304 EK v0.9.0 or older, which has limited LDO
+        functionality.{' '}
         <ExternalLink
             href="https://www.nordicsemi.com/About-us/Contact-Us"
-            label="contact Nordic"
+            label="Contact Nordic"
         />{' '}
-        if you wish to receive a new kit.
+        if you want to receive a new kit.
     </p>
 );
 
@@ -92,7 +92,7 @@ const npm2100TooOldMessage = (reject: (error: Error) => void): PmicDialog => ({
         'Your device hardware version is too old and not compatible with this version of the application',
     confirmLabel: 'OK',
     optionalLabel: "Don't show again",
-    title: 'Important notice!',
+    title: 'Important',
     onConfirm: () => {
         reject(new Error('Device setup cancelled'));
     },
@@ -248,8 +248,8 @@ export const npm1300DeviceSetup = (firmware: NpmFirmware): DeviceSetup => ({
                             message: npm1300EngineeringCMessage,
                             confirmLabel: 'Yes',
                             cancelLabel: 'No',
-                            optionalLabel: "Yes, don't ask again",
-                            title: 'Important notice!',
+                            optionalLabel: "Yes & don't ask again",
+                            title: 'Important',
                             onConfirm: () => {
                                 resolve(action());
                             },
@@ -377,8 +377,8 @@ export const npm1304DeviceSetup = (firmware: NpmFirmware): DeviceSetup => ({
                                 'pmic1304-0.9.0-old-EK-warning',
                             message: npm1304OlderPmicMessage,
                             confirmLabel: 'Yes',
-                            optionalLabel: "Yes, don't ask again",
-                            title: 'Important notice!',
+                            optionalLabel: "Yes & don't ask again",
+                            title: 'Important!',
                             onConfirm: () => {
                                 resolve();
                             },
@@ -402,8 +402,8 @@ export const npm1304DeviceSetup = (firmware: NpmFirmware): DeviceSetup => ({
                             message: npm1304EngineeringMessage,
                             confirmLabel: 'Yes',
                             cancelLabel: 'No',
-                            optionalLabel: "Yes, don't ask again",
-                            title: 'Important notice!',
+                            optionalLabel: "Yes & don't ask again",
+                            title: 'Important!',
                             onConfirm: () => {
                                 resolve(action());
                             },

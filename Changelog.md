@@ -3,7 +3,7 @@
 ### Changed
 
 - nPM1300 and nPM1304: Updated SoftStart currents.
-- Enabled LDO SoftStart for compatible devices
+- Enabled LDO SoftStart for compatible devices.
 
 ### Fixed
 

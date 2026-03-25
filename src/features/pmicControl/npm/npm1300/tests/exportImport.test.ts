@@ -429,7 +429,7 @@ describe('PMIC 1300 - Apply Config ', () => {
         verifyApplyConfig();
     });
 
-    test("Apply wrong firmware version -- Yes, Don't ask again", async () => {
+    test("Apply wrong firmware version -- Yes & don't ask again", async () => {
         mockDialogHandler.mockImplementationOnce((dialog: PmicDialog) => {
             if (dialog.onOptional) dialog.onOptional();
         });

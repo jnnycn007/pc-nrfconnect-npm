@@ -1098,7 +1098,7 @@ export default abstract class BaseNpmDevice {
                     message: `The configuration was intended for firmware version ${config.firmwareVersion}. Device is running a different version.
                 ${this.supportedVersion}. Do you still want to apply this configuration?`,
                     confirmLabel: 'Yes',
-                    optionalLabel: "Yes, don't ask again",
+                    optionalLabel: "Yes & don't ask again",
                     cancelLabel: 'No',
                     title: 'Warning',
                     onConfirm: async () => {
