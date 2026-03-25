@@ -10,6 +10,7 @@ import {
     createSerialPort,
     Device,
     DeviceSetup,
+    ExternalLink,
     getAppDir,
     logger,
     setWaitForDevice,
@@ -64,12 +65,24 @@ const npm1300EngineeringCMessage = (
     </>
 );
 
-const npm1304EngineeringCMessage = (
+const npm1304EngineeringMessage = (
     <p>
         You have connected an nPM1304 EK version 0.1.0. This EK version does not
         support custom battery profiling and the on-board active load. Fuel
         gauging is only available with preset profiles. If you want to use any
         of these features, contact Nordic Semiconductor to request a new EK.
+    </p>
+);
+
+const npm1304OlderPmicMessage = (
+    <p>
+        You have connected an nPM1304 EK v0.9.0 or older, which has limited LDO
+        functionality.{' '}
+        <ExternalLink
+            href="https://www.nordicsemi.com/About-us/Contact-Us"
+            label="Contact Nordic"
+        />{' '}
+        if you want to receive a new kit.
     </p>
 );
 
@@ -79,7 +92,7 @@ const npm2100TooOldMessage = (reject: (error: Error) => void): PmicDialog => ({
         'Your device hardware version is too old and not compatible with this version of the application',
     confirmLabel: 'OK',
     optionalLabel: "Don't show again",
-    title: 'Important notice!',
+    title: 'Important',
     onConfirm: () => {
         reject(new Error('Device setup cancelled'));
     },
@@ -235,8 +248,8 @@ export const npm1300DeviceSetup = (firmware: NpmFirmware): DeviceSetup => ({
                             message: npm1300EngineeringCMessage,
                             confirmLabel: 'Yes',
                             cancelLabel: 'No',
-                            optionalLabel: "Yes, don't ask again",
-                            title: 'Important notice!',
+                            optionalLabel: "Yes & don't ask again",
+                            title: 'Important',
                             onConfirm: () => {
                                 resolve(action());
                             },
@@ -356,6 +369,28 @@ export const npm1304DeviceSetup = (firmware: NpmFirmware): DeviceSetup => ({
 
                 await dispose();
 
+                if (hwVersion !== undefined && semver.lte(hwVersion, '0.9.0')) {
+                    await new Promise<void>(resolve => {
+                        const information: PmicDialog = {
+                            type: 'alert',
+                            doNotAskAgainStoreID:
+                                'pmic1304-0.9.0-old-EK-warning',
+                            message: npm1304OlderPmicMessage,
+                            confirmLabel: 'Yes',
+                            optionalLabel: "Yes & don't ask again",
+                            title: 'Important!',
+                            onConfirm: () => {
+                                resolve();
+                            },
+                            onOptional: () => {
+                                resolve();
+                            },
+                        };
+
+                        dispatch(dialogHandler(information));
+                    });
+                }
+
                 if (hwVersion === '0.1.0') {
                     const p = new Promise<{
                         device: Device;
@@ -364,11 +399,11 @@ export const npm1304DeviceSetup = (firmware: NpmFirmware): DeviceSetup => ({
                         const information: PmicDialog = {
                             type: 'alert',
                             doNotAskAgainStoreID: 'pmic1304-hw0.1.0-issues',
-                            message: npm1304EngineeringCMessage,
+                            message: npm1304EngineeringMessage,
                             confirmLabel: 'Yes',
                             cancelLabel: 'No',
-                            optionalLabel: "Yes, don't ask again",
-                            title: 'Important notice!',
+                            optionalLabel: "Yes & don't ask again",
+                            title: 'Important!',
                             onConfirm: () => {
                                 resolve(action());
                             },

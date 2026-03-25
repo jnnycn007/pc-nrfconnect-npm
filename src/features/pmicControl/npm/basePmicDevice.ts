@@ -280,6 +280,7 @@ export default abstract class BaseNpmDevice {
             offlineMode: this.offlineMode,
             dialogHandler: this.dialogHandler,
             npmDevice: this,
+            pmicRevision: this.pmicRevision,
         };
         if (this.peripherals.ChargerModule) {
             this.chargerModule = new this.peripherals.ChargerModule({
@@ -398,6 +399,7 @@ export default abstract class BaseNpmDevice {
         readonly batteryConnectedVoltageThreshold: number,
         private readonly _supportedErrorLogs: SupportedErrorLogs,
         protected hardwareVersion?: string,
+        readonly pmicRevision?: number,
     ) {
         this.#pmicState = shellParser ? 'pmic-connected' : 'ek-disconnected';
         this.offlineMode = !shellParser;
@@ -1096,7 +1098,7 @@ export default abstract class BaseNpmDevice {
                     message: `The configuration was intended for firmware version ${config.firmwareVersion}. Device is running a different version.
                 ${this.supportedVersion}. Do you still want to apply this configuration?`,
                     confirmLabel: 'Yes',
-                    optionalLabel: "Yes, don't ask again",
+                    optionalLabel: "Yes & don't ask again",
                     cancelLabel: 'No',
                     title: 'Warning',
                     onConfirm: async () => {
